@@ -256,7 +256,7 @@ export default function App() {
     </> );
 
   return (
-    <div className="min-h-screen flex p-5 gap-5" style={{ background: '#eeeef0', fontFamily: "'Inter', -apple-system, system-ui, sans-serif" }}>
+    <div className="min-h-screen flex flex-col md:flex-row p-4 md:p-5 gap-4 md:gap-5" style={{ background: '#eeeef0', fontFamily: "'Inter', -apple-system, system-ui, sans-serif" }}>
 
       {/* Mobile header (visible on small screens) */}
       <div className="md:hidden flex items-center justify-between p-4">
@@ -292,7 +292,7 @@ export default function App() {
       <main className="flex-1 flex flex-col gap-5 min-w-0">
 
         {/* Row 1 */}
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="rounded-[24px] p-5 shadow-sm" style={{ background: '#fff', border: '1px solid #e8e8ea' }}>
             <div className="flex justify-between items-start">
               <div>
@@ -417,7 +417,7 @@ export default function App() {
       </main>
 
       {/* ═══════ RIGHT COLUMN ═══════ */}
-      <aside className="w-[300px] flex-shrink-0 flex flex-col gap-5">
+      <aside className="hidden lg:flex w-[300px] flex-shrink-0 flex flex-col gap-5">
 
         {/* Focus Mode Card */}
         <div className="rounded-[24px] p-5 shadow-sm" style={{ background: '#18181b' }}>
