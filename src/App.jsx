@@ -3,7 +3,7 @@ import {
   Plus, Trash2, Sun, Moon, ChevronDown, Check, X,
   ChevronLeft, Calendar, Play, Pause, Settings, Bell, HelpCircle,
   Share2, BarChart3, Trophy, ArrowUpRight, Send, Clock, User, Sparkles,
-  Timer, Edit3, RotateCcw
+  Timer, Edit3, RotateCcw, Menu
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -26,6 +26,7 @@ const TodoIcon = () => (
 );
 
 export default function App() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [toast, setToast] = useState(null);
@@ -189,12 +190,9 @@ export default function App() {
   };
 
   /* ═══════════════════ RENDER ═══════════════════ */
-  return (
-    <div className="min-h-screen flex p-5 gap-5" style={{ background: '#eeeef0', fontFamily: "'Inter', -apple-system, system-ui, sans-serif" }}>
-
-      {/* ═══════ LEFT SIDEBAR ═══════ */}
-      <aside className="w-[240px] flex-shrink-0 rounded-[24px] flex flex-col justify-between p-5 shadow-sm" style={{ background: '#fff', border: '1px solid #e8e8ea' }}>
-        <div>
+  const SidebarContent = () => (
+    <>
+      <div>
           <div className="flex items-center justify-between mb-7">
             <div className="flex items-center gap-2.5">
               <ShieldLogo />
@@ -254,8 +252,41 @@ export default function App() {
             </div>
             <ChevronDown size={14} className="rotate-180" style={{ color: '#9ca3af' }} />
           </div>
+          </div>
+    </> );
+
+  return (
+    <div className="min-h-screen flex p-5 gap-5" style={{ background: '#eeeef0', fontFamily: "'Inter', -apple-system, system-ui, sans-serif" }}>
+
+      {/* Mobile header (visible on small screens) */}
+      <div className="md:hidden flex items-center justify-between p-4">
+        <div className="flex items-center gap-2.5">
+          <ShieldLogo />
+          <span className="font-bold text-[16px]">BetterTasks</span>
         </div>
+        <button onClick={() => setMobileMenuOpen(true)} className="p-2 rounded-md">
+          <Menu size={22} />
+        </button>
+      </div>
+
+      {/* Desktop sidebar (hidden on small screens) */}
+      <aside className="hidden md:flex w-[240px] flex-shrink-0 rounded-[24px] flex flex-col justify-between p-5 shadow-sm" style={{ background: '#fff', border: '1px solid #e8e8ea' }}>
+        <SidebarContent />
       </aside>
+
+      {/* Mobile sidebar overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          <div className="absolute inset-0 bg-black/40" onClick={() => setMobileMenuOpen(false)} />
+          <div className="relative w-72 h-full bg-white p-4">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2.5"><ShieldLogo /><span className="font-bold">BetterTasks</span></div>
+              <button onClick={() => setMobileMenuOpen(false)} className="p-2 rounded-md"><X /></button>
+            </div>
+            <SidebarContent />
+          </div>
+        </div>
+      )}
 
       {/* ═══════ CENTER COLUMN ═══════ */}
       <main className="flex-1 flex flex-col gap-5 min-w-0">
