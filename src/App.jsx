@@ -48,9 +48,22 @@ export default function App() {
   useEffect(() => { fetchTasks(); }, []);
 
   const fetchTasks = async () => {
-    try { const r = await fetch(`${API_BASE}/tasks`); setTasks(await r.json()); }
-    catch { showToast('Failed to load tasks', 'error'); }
-    finally { setLoading(false); }
+    try {
+      const r = await fetch(`${API_BASE}/tasks`);
+      if (!r.ok) {
+        const err = await r.json().catch(() => ({ error: r.statusText }));
+        console.error('Failed to fetch tasks:', err);
+        showToast('Failed to load tasks', 'error');
+        setTasks([]);
+        return;
+      }
+      const data = await r.json();
+      setTasks(Array.isArray(data) ? data : []);
+    } catch (e) {
+      console.error(e);
+      showToast('Failed to load tasks', 'error');
+      setTasks([]);
+    } finally { setLoading(false); }
   };
 
   const showToast = (msg, type = 'success') => {
