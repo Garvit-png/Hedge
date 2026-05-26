@@ -11,7 +11,7 @@ import balloonsImg from './assets/balloons.png';
 import pandaImg from './assets/panda.png';
 import profileImg from './assets/profile.png';
 
-const API_BASE = 'http://localhost:5001/api';
+const API_BASE = import.meta.env.DEV ? 'http://localhost:5001/api' : '/api';
 
 /* ── tiny SVG logo ── */
 const ShieldLogo = () => (
