@@ -244,7 +244,7 @@ export default function App() {
           </div>
           <div className="flex items-center justify-between pt-1">
             <div className="flex items-center gap-2.5">
-              <img src={profileImg} alt="" className="w-9 h-9 rounded-full object-cover" style={{ border: '1px solid #e8e8ea' }} />
+              <img src={profileImg} alt="Profile" loading="lazy" className="w-9 h-9 rounded-full object-cover profile-img" style={{ border: '1px solid #e8e8ea' }} />
               <div>
                 <p className="font-bold text-[12px]" style={{ color: '#18181b' }}>Pristia Candra</p>
                 <p className="text-[10px]" style={{ color: '#9ca3af' }}>Nameless panda #112</p>
@@ -256,15 +256,15 @@ export default function App() {
     </> );
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row p-4 md:p-5 gap-4 md:gap-5" style={{ background: '#eeeef0', fontFamily: "'Inter', -apple-system, system-ui, sans-serif" }}>
+    <div className="min-h-screen flex flex-col md:flex-row pt-16 md:pt-0 p-4 md:p-5 gap-4 md:gap-5" style={{ background: '#eeeef0', fontFamily: "'Inter', -apple-system, system-ui, sans-serif" }}>
 
       {/* Mobile header (visible on small screens) */}
-      <div className="md:hidden flex items-center justify-between p-4">
+      <div className="md:hidden fixed top-0 left-0 right-0 bg-white shadow-sm z-50 flex items-center justify-between p-3">
         <div className="flex items-center gap-2.5">
           <ShieldLogo />
           <span className="font-bold text-[16px]">BetterTasks</span>
         </div>
-        <button onClick={() => setMobileMenuOpen(true)} className="p-2 rounded-md">
+        <button onClick={() => setMobileMenuOpen(true)} className="p-2 rounded-md" aria-label="Open menu">
           <Menu size={22} />
         </button>
       </div>
@@ -312,7 +312,7 @@ export default function App() {
           </div>
           <div className="rounded-[24px] p-5 shadow-sm flex items-center justify-between" style={{ background: '#fff', border: '1px solid #e8e8ea' }}>
             <div className="flex items-center gap-3.5">
-              <img src={pandaImg} alt="" className="w-11 h-11 rounded-full object-cover" />
+              <img src={pandaImg} alt="Panda" loading="lazy" className="w-11 h-11 rounded-full object-cover" />
               <div>
                 <p className="font-bold text-[13px]" style={{ color: '#18181b' }}>Nameless Pada #245</p>
                 <p className="text-[12px]" style={{ color: '#9ca3af' }}>Microsoft</p>
@@ -504,7 +504,7 @@ export default function App() {
 
         {/* Balloon image */}
         <div className="flex-1 rounded-[24px] overflow-hidden shadow-sm group" style={{ border: '1px solid #e8e8ea', minHeight: '200px' }}>
-          <img src={balloonsImg} alt="Cappadocia" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <img src={balloonsImg} alt="Cappadocia" loading="lazy" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 balloons-img" />
         </div>
       </aside>
 
@@ -603,6 +603,16 @@ export default function App() {
         @keyframes toastIn {
           from { opacity: 0; transform: translateY(12px); }
           to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile-specific tweaks */
+        @media (max-width: 640px) {
+          .modal-input { font-size: 14px; padding: 10px 12px; }
+          h1 { font-size: 20px !important; }
+          .rounded-[24px] { border-radius: 12px; }
+          .balloons-img { display: none; }
+          .profile-img { width: 36px !important; height: 36px !important; }
+          .min-h-screen { padding-bottom: 6rem; }
         }
       `}</style>
     </div>
