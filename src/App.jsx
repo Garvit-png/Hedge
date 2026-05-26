@@ -329,16 +329,16 @@ export default function App() {
         <div className="rounded-[24px] p-5 shadow-sm flex-1 flex flex-col" style={{ background: '#fff', border: '1px solid #e8e8ea' }}>
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-[18px] font-bold m-0" style={{ color: '#18181b' }}>Today's Task</h2>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col sm:flex-row items-center gap-2 w-full">
               <button
                 onClick={focusActive ? pauseSession : startSession}
-                className="flex items-center gap-2 px-4 py-[8px] rounded-xl text-[12px] font-semibold text-white transition-all hover:opacity-90 active:scale-95"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-[14px] font-semibold text-white transition-all hover:opacity-90 active:scale-95"
                 style={{ background: focusActive ? (timerRunning ? '#dc2626' : '#f59e0b') : '#18181b' }}
               >
                 {focusActive ? (timerRunning ? <><Pause size={13} /> Pause</> : <><Play size={13} /> Resume</>) : <><Clock size={14} /> Focus Mode</>}
                 {focusActive && <span className="ml-1 font-mono text-[11px] tabular-nums">{fmt(focusTime)}</span>}
               </button>
-              <button className="flex items-center gap-2 px-4 py-[8px] rounded-xl text-[12px] font-semibold transition-colors hover:bg-[#f9fafb] active:scale-95" style={{ background: '#fff', border: '1px solid #e5e7eb', color: '#3f3f46' }}>
+              <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-[14px] font-semibold transition-colors hover:bg-[#f9fafb] active:scale-95" style={{ background: '#fff', border: '1px solid #e5e7eb', color: '#3f3f46' }}>
                 <Sparkles size={14} style={{ color: '#f59e0b' }} /> AI Assist
               </button>
             </div>
@@ -394,17 +394,17 @@ export default function App() {
           </div>
 
           {/* Bottom action bar */}
-          <div className="flex items-center gap-2.5 pt-4 mt-2" style={{ borderTop: '1px solid #f3f4f6' }}>
+          <div className="flex flex-col sm:flex-row items-center gap-2.5 pt-4 mt-2" style={{ borderTop: '1px solid #f3f4f6' }}>
             <button
               onClick={startSession}
-              className="px-4 py-[7px] rounded-xl text-[12px] font-semibold transition-all hover:bg-[#f9fafb] active:scale-95"
+              className="w-full sm:w-auto px-4 py-3 rounded-xl text-[13px] font-semibold transition-all hover:bg-[#f9fafb] active:scale-95"
               style={{ border: '1px solid #e5e7eb', color: '#6b7280', background: '#fff', cursor: 'pointer' }}
             >
               Start Session
             </button>
             <button
               onClick={openCreate}
-              className="flex items-center gap-1.5 px-4 py-[7px] rounded-xl text-[12px] font-semibold transition-all hover:bg-[#f9fafb] active:scale-95"
+              className="w-full sm:w-auto flex items-center gap-1.5 px-4 py-3 rounded-xl text-[13px] font-semibold transition-all hover:bg-[#f9fafb] active:scale-95"
               style={{ border: '1px solid #e5e7eb', color: '#6b7280', background: '#fff', cursor: 'pointer' }}
             >
               <Plus size={13} /> Add Task
@@ -417,7 +417,7 @@ export default function App() {
       </main>
 
       {/* ═══════ RIGHT COLUMN ═══════ */}
-      <aside className="hidden lg:flex w-[300px] flex-shrink-0 flex flex-col gap-5">
+      <aside className="w-full md:w-[300px] flex-shrink-0 flex flex-col gap-5">
 
         {/* Focus Mode Card */}
         <div className="rounded-[24px] p-5 shadow-sm" style={{ background: '#18181b' }}>
